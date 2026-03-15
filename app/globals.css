@@ -1,0 +1,430 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@layer utilities {
+  .text-balance {
+    /* text-wrap: balance; - Disabled for older browser compatibility */
+  }
+}
+
+@layer base {
+  :root {
+    /* Light theme (default) with improved aesthetics */
+    --background: 210 40% 98%;
+    --foreground: 222 47% 11%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+    --primary: 221 83% 53%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222 47% 11%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215 16% 47%;
+    --accent: 45 93% 47%;  /* Amber accent */
+    --accent-foreground: 222 47% 11%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 45 93% 47%;  /* Amber ring */
+    --chart-1: 221 83% 53%;  /* Blue */
+    --chart-2: 142 76% 36%;  /* Green */
+    --chart-3: 43 96% 58%;   /* Amber/Gold */
+    --chart-4: 326 100% 74%; /* Pink */
+    --chart-5: 262 83% 58%;  /* Purple */
+    --radius: 0.5rem;
+
+    /* Additional custom variables */
+    --text-primary: 222 47% 11%;
+    --text-secondary: 215 16% 47%;
+    --accent-color: 45 93% 47%;  /* Amber accent */
+    --card-bg: 0 0% 100%;
+    --border-color: 45 93% 47%;  /* Amber border */
+    --shadow: 0 10% 15% 0.1;
+    --nav-bg: 210 40% 98% 0.9;
+    --nav-text: 222 47% 11%;
+    --header-bg: 0 0% 100%;
+    --body-bg: 210 40% 98%;
+  }
+
+  [data-theme="dark"],
+  .dark {
+    /* Updated dark theme with golden accents */
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 240 5.9% 10%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 45 93% 47%;  /* Golden amber */
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 45 93% 47%;  /* Golden amber */
+    --chart-1: 45 93% 47%;  /* Golden amber */
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+
+    /* Additional custom variables */
+    --text-primary: 0 0% 95%;
+    --text-secondary: 0 0% 65%;
+    --accent-color: 45 93% 47%;  /* Golden amber */
+    --card-bg: 240 3.7% 15.9%;
+    --border-color: 45 93% 30%;  /* Darker amber */
+    --shadow: 0 0% 100% 0.1;
+    --nav-bg: 20 14.3% 4.1% 0.95;
+    --nav-text: 0 0% 98%;
+    --header-bg: 240 10% 3.9%;
+    --body-bg: 240 10% 3.9%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    background-color: hsl(var(--body-bg));
+  }
+  nav {
+    background-color: hsl(var(--nav-bg));
+    color: hsl(var(--nav-text));
+  }
+  header {
+    background-color: hsl(var(--header-bg));
+  }
+}
+
+/* Hide theme toggle icons appropriately */
+[data-theme="dark"] .sun-icon {
+  display: block;
+}
+
+[data-theme="dark"] .moon-icon {
+  display: none;
+}
+
+[data-theme="light"] .sun-icon {
+  display: none;
+}
+
+[data-theme="light"] .moon-icon {
+  display: block;
+}
+
+/* Disable transitions when theme initially loads */
+.theme-transition-disabled * {
+  transition: none !important;
+}
+
+/* Apply dark theme to all major components */
+.dark-theme, .dark {
+  color-scheme: dark;
+}
+
+/* Dark mode text visibility */
+html.dark,
+html.dark body {
+  color: #f1f1f1;
+}
+
+/* Override gray text colors in dark mode */
+html.dark .text-gray-900,
+html.dark .text-gray-800,
+html.dark .text-gray-700,
+html.dark .text-gray-600 {
+  color: #e5e7eb;
+}
+
+html.dark .text-gray-500 {
+  color: #9ca3af;
+}
+
+html.dark .text-gray-400 {
+  color: #6b7280;
+}
+
+/* NOTE: Removed the rule that forced white text on any element with
+   bg-gradient/backdrop-blur classes in dark mode. It was too aggressive and
+   could make text unreadable on light gradients if the dark class persisted. */
+
+/* Dark mode backgrounds */
+html.dark .bg-white {
+  background-color: rgb(24, 24, 27);
+}
+
+html.dark .bg-gray-50 {
+  background-color: rgb(39, 39, 42);
+}
+
+html.dark .bg-gray-100 {
+  background-color: rgb(39, 39, 42);
+}
+
+/* Dark mode borders */
+html.dark .border-gray-200 {
+  border-color: rgb(63, 63, 70);
+}
+
+html.dark .border-gray-300 {
+  border-color: rgb(82, 82, 91);
+}
+
+/* Golden accents for dark mode */
+.dark-theme button, .dark button,
+.dark-theme .btn, .dark .btn {
+  --tw-shadow: 0 1px 3px 0 rgba(255, 185, 0, 0.2), 0 1px 2px -1px rgba(255, 185, 0, 0.2);
+}
+
+.dark-theme a:hover, .dark a:hover,
+.dark-theme button:hover, .dark button:hover {
+  color: hsl(var(--accent-color));
+}
+
+/* Color overrides for dark mode */
+.dark-theme .text-primary, .dark .text-primary {
+  color: hsl(var(--text-primary));
+}
+
+.dark-theme .text-accent, .dark .text-accent {
+  color: hsl(var(--accent-color));
+}
+
+/* Ensure text contrasts properly in dark mode */
+.dark-theme .text-gray-700,
+.dark-theme .text-gray-800,
+.dark-theme .text-gray-900,
+.dark .text-gray-700,
+.dark .text-gray-800,
+.dark .text-gray-900 {
+  color: #f1f1f1;
+}
+
+
+
+
+
+/* Golden progress bars and indicators */
+.dark-theme progress,
+.dark-theme .progress-bar,
+.dark progress,
+.dark .progress-bar {
+  background-color: hsl(45 93% 47%) !important;
+}
+
+
+
+/* Special colorations for heading texts in dark mode */
+.dark-theme h1, .dark-theme h2, .dark-theme h3,
+.dark h1, .dark h2, .dark h3 {
+  color: hsl(45 93% 47%);
+}
+
+/* Enhanced light mode styling */
+body:not(.dark):not(.dark-theme) {
+  color: hsl(var(--text-primary));
+  background-color: hsl(var(--background));
+}
+
+/* Light mode text visibility */
+html:not(.dark) body {
+  color: #1f2937;
+}
+
+body:not(.dark):not(.dark-theme) h1,
+body:not(.dark):not(.dark-theme) h2,
+body:not(.dark):not(.dark-theme) h3 {
+  color: hsl(var(--text-primary));
+  font-weight: 700;
+}
+
+body:not(.dark):not(.dark-theme) h4,
+body:not(.dark):not(.dark-theme) h5,
+body:not(.dark):not(.dark-theme) h6 {
+  color: hsl(var(--text-primary));
+  font-weight: 600;
+}
+
+body:not(.dark):not(.dark-theme) p,
+body:not(.dark):not(.dark-theme) span,
+body:not(.dark):not(.dark-theme) div,
+body:not(.dark):not(.dark-theme) li {
+  color: hsl(var(--text-primary));
+}
+
+body:not(.dark):not(.dark-theme) a {
+  color: hsl(var(--primary));
+  transition: color 0.2s ease;
+}
+
+body:not(.dark):not(.dark-theme) a:hover {
+  color: hsl(var(--accent));
+  text-decoration: underline;
+}
+
+body:not(.dark):not(.dark-theme) .card,
+body:not(.dark):not(.dark-theme) .bg-white {
+  background-color: hsl(var(--card));
+  border: 1px solid hsl(var(--border));
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  border-radius: var(--radius);
+}
+
+body:not(.dark):not(.dark-theme) button.bg-blue-500,
+body:not(.dark):not(.dark-theme) button.bg-purple-500,
+body:not(.dark):not(.dark-theme) button.bg-green-500,
+body:not(.dark):not(.dark-theme) .btn-primary {
+  background-color: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+  transition: all 0.3s ease;
+}
+
+body:not(.dark):not(.dark-theme) button.bg-blue-500:hover,
+body:not(.dark):not(.dark-theme) button.bg-purple-500:hover,
+body:not(.dark):not(.dark-theme) button.bg-green-500:hover,
+body:not(.dark):not(.dark-theme) .btn-primary:hover {
+  background-color: hsl(var(--primary));
+  filter: brightness(0.9);
+  transform: translateY(-1px);
+}
+
+body:not(.dark):not(.dark-theme) .bg-gray-50,
+body:not(.dark):not(.dark-theme) .bg-gray-100,
+body:not(.dark):not(.dark-theme) .bg-gray-200 {
+  background-color: hsl(var(--secondary));
+  color: hsl(var(--secondary-foreground));
+}
+
+body:not(.dark):not(.dark-theme) [class*="gradient-to-"] {
+  background-image: linear-gradient(to right, hsl(var(--primary)), hsl(var(--accent)));
+  color: white;
+}
+
+body:not(.dark):not(.dark-theme) .border,
+body:not(.dark):not(.dark-theme) .border-gray-100,
+body:not(.dark):not(.dark-theme) .border-gray-200 {
+  border-color: hsl(var(--border));
+}
+
+body:not(.dark):not(.dark-theme) .badge {
+  background-color: hsl(var(--accent));
+  color: hsl(222 47% 11%);
+  font-weight: 600;
+}
+
+body:not(.dark):not(.dark-theme) .shadow-sm {
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+body:not(.dark):not(.dark-theme) .shadow {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* Enhanced card styling for light mode */
+body:not(.dark):not(.dark-theme) .card {
+  border-radius: 8px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+body:not(.dark):not(.dark-theme) .card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* Enhanced button styling for light mode */
+body:not(.dark):not(.dark-theme) button,
+body:not(.dark):not(.dark-theme) .btn {
+  font-weight: 500;
+  border-radius: var(--radius);
+  transition: all 0.2s ease;
+}
+
+/* Vibrant accent elements */
+body:not(.dark):not(.dark-theme) .accent-element {
+  background-color: hsl(var(--accent));
+  color: #000;
+  border-radius: var(--radius);
+  padding: 0.5rem 1rem;
+}
+
+/* Enhanced form elements */
+body:not(.dark):not(.dark-theme) input,
+body:not(.dark):not(.dark-theme) select,
+body:not(.dark):not(.dark-theme) textarea {
+  border: 1px solid hsl(var(--border));
+  border-radius: var(--radius);
+  padding: 0.5rem 0.75rem;
+  background-color: white;
+  color: hsl(var(--text-primary));
+}
+
+body:not(.dark):not(.dark-theme) input:focus,
+body:not(.dark):not(.dark-theme) select:focus,
+body:not(.dark):not(.dark-theme) textarea:focus {
+  outline: none;
+  border-color: hsl(var(--accent));
+  box-shadow: 0 0 0 2px hsla(var(--accent), 0.2);
+}
+
+/* Colorful section backgrounds */
+body:not(.dark):not(.dark-theme) .bg-primary-gradient {
+  background: linear-gradient(135deg, hsl(221 83% 98%), hsl(210 40% 96.1%));
+}
+
+body:not(.dark):not(.dark-theme) .bg-accent-gradient {
+  background: linear-gradient(135deg, hsl(45 93% 95%), hsl(45 93% 85%));
+}
+
+/* Ensure proper contrast for text on colored backgrounds */
+body:not(.dark):not(.dark-theme) .bg-primary .text,
+body:not(.dark):not(.dark-theme) .bg-accent .text {
+  color: hsl(var(--text-primary));
+  font-weight: 500;
+}
+
+/* Colorful badges/tags */
+body:not(.dark):not(.dark-theme) .tag-blue {
+  background-color: hsl(221 83% 95%);
+  color: hsl(221 83% 40%);
+  border: 1px solid hsl(221 83% 85%);
+  border-radius: 9999px;
+  padding: 0.25rem 0.75rem;
+  font-weight: 500;
+}
+
+body:not(.dark):not(.dark-theme) .tag-green {
+  background-color: hsl(142 76% 95%);
+  color: hsl(142 76% 30%);
+  border: 1px solid hsl(142 76% 85%);
+  border-radius: 9999px;
+  padding: 0.25rem 0.75rem;
+  font-weight: 500;
+}
+
+body:not(.dark):not(.dark-theme) .tag-amber {
+  background-color: hsl(45 93% 95%);
+  color: hsl(45 93% 30%);
+  border: 1px solid hsl(45 93% 85%);
+  border-radius: 9999px;
+  padding: 0.25rem 0.75rem;
+  font-weight: 500;
+}
