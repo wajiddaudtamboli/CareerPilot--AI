@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-// import { chatService } from "../../../lib/dbService.js"; // Temporarily disabled
+import { chatService } from "../../../lib/dbService.js";
 
 // Handle POST request for saving chat messages
 export async function POST(request) {
@@ -13,22 +13,24 @@ export async function POST(request) {
       );
     }
 
-    // Temporarily disabled database saving
-    // const savedMessage = await chatService.saveChatMessage(userId, sessionId, message, role);
-
-    // Return success without database operation
-    const mockSavedMessage = {
-      id: Date.now(),
-      userId,
-      sessionId,
-      message,
-      role,
-      timestamp: new Date().toISOString()
-    };
+    // Persist message when DB is available; fall back to echo for non-DB environments
+    let savedMessage;
+    if (chatService?.saveChatMessage) {
+      savedMessage = await chatService.saveChatMessage(userId, sessionId, message, role);
+    } else {
+      savedMessage = {
+        id: Date.now(),
+        userId,
+        sessionId,
+        message,
+        role,
+        timestamp: new Date().toISOString(),
+      };
+    }
 
     return NextResponse.json({
       success: true,
-      message: mockSavedMessage
+      message: savedMessage
     });
   } catch (error) {
     console.error("Error saving chat message:", error);
@@ -54,8 +56,10 @@ export async function GET(request) {
       );
     }
 
-    // Get chat history from database
-    const chatHistory = await chatService.getChatHistory(parseInt(userId), sessionId, limit);
+    // Get chat history from database when available; otherwise return empty history
+    const chatHistory = chatService?.getChatHistory
+      ? await chatService.getChatHistory(parseInt(userId), sessionId, limit)
+      : [];
 
     return NextResponse.json({
       success: true,

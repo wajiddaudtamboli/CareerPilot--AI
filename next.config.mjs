@@ -2,6 +2,7 @@
 import path from 'node:path';
 
 const nextConfig = {
+  reactStrictMode: true,
   // Output configuration - standalone for Vercel/Hostinger with API routes
   output: 'standalone',
   trailingSlash: false,
@@ -54,8 +55,6 @@ const nextConfig = {
         stream: false,
         util: false,
         crypto: false,
-        'react/jsx-runtime': 'react/jsx-runtime.js',
-        'react/jsx-dev-runtime': 'react/jsx-dev-runtime.js',
       };
     }
     
