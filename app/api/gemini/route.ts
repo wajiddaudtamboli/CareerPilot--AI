@@ -4,16 +4,15 @@ import { NextRequest, NextResponse } from 'next/server';
 // Security: removed hardcoded API key. Use .env.local only.
 const apiKey = process.env.GOOGLE_GEMINI_API_KEY;
 
-// Basic environment diagnostics (non-sensitive)
-console.log('Gemini env check:', {
-  hasApiKey: !!apiKey,
-  keyLength: apiKey?.length,
-  fromEnv: !!apiKey,
-});
-
 // Validate API key format (length heuristic only)
 const isValidApiKey = !!apiKey && apiKey.length > 30;
-if (!isValidApiKey) {
+if (!isValidApiKey && process.env.NODE_ENV === 'development') {
+  // Keep local dev signal, avoid noisy production build logs.
+  console.log('Gemini env check:', {
+    hasApiKey: !!apiKey,
+    keyLength: apiKey?.length,
+    fromEnv: !!apiKey,
+  });
   console.warn('Gemini: Fallback mode (no valid API key). Set GOOGLE_GEMINI_API_KEY in .env.local');
 }
 

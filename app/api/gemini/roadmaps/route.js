@@ -1,8 +1,11 @@
 import { NextResponse } from "next/server";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
-// Initialize Gemini API
-const genAI = new GoogleGenerativeAI(process.env.GOOGLE_GEMINI_API_KEY || "");
+function getGeminiClient() {
+  const key = process.env.GOOGLE_GEMINI_API_KEY;
+  if (!key) return null;
+  return new GoogleGenerativeAI(key);
+}
 
 export async function POST(request) {
   try {
@@ -16,8 +19,8 @@ export async function POST(request) {
     }
 
     // Check if API key is configured
-    if (!process.env.GOOGLE_GEMINI_API_KEY) {
-      console.warn("Gemini API key not configured, returning mock data");
+    const genAI = getGeminiClient();
+    if (!genAI) {
       return NextResponse.json(getMockRoadmap(career, level));
     }
 
