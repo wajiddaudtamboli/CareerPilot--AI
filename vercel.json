@@ -2,7 +2,7 @@
   "framework": "nextjs",
   "buildCommand": "npm run build:vercel",
   "outputDirectory": ".next",
-  "installCommand": "npm install",
+  "installCommand": "npm ci --no-audit --no-fund",
   "devCommand": "npm run dev",
   "regions": ["iad1"],
   "functions": {

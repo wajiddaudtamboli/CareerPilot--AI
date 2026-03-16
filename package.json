@@ -21,8 +21,8 @@
     "dev:trace": "node -r ./tracing.cjs node_modules/next/dist/bin/next dev",
     "dev:turbo": "next dev --turbo",
     "dev:clean": "rimraf .next && next dev",
-    "build": "next build",
-    "build:vercel": "npm run prebuild && next build",
+    "build": "cross-env NEXT_TELEMETRY_DISABLED=1 next build",
+    "build:vercel": "npm run prebuild && cross-env NEXT_TELEMETRY_DISABLED=1 next build",
     "build:hostinger": "npm run prebuild && next build",
     "start": "next start",
     "lint": "cross-env NODE_NO_WARNINGS=1 ESLINT_USE_FLAT_CONFIG=false eslint .",
@@ -31,7 +31,6 @@
     "clean": "rimraf .next out",
     "clean:cache": "rimraf .next node_modules/.cache",
     "fresh": "rimraf .next node_modules && npm install && npm run dev",
-    "postinstall": "next telemetry disable",
     "analyze": "cross-env ANALYZE=true next build"
   },
   "dependencies": {
