@@ -32,6 +32,14 @@ const nextConfig = {
 
   // Webpack adjustments
   webpack: (config, { isServer, dev }) => {
+    // Reduce noisy webpack infrastructure warnings in production builds (e.g. PackFileCacheStrategy logs)
+    if (!dev) {
+      config.infrastructureLogging = {
+        ...(config.infrastructureLogging ?? {}),
+        level: 'error',
+      };
+    }
+
     // Client-side polyfill handling
     if (!isServer) {
       config.resolve.fallback = {
