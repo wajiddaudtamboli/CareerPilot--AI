@@ -14,18 +14,15 @@ A full-stack AI-powered career planning and job preparation platform built with 
 - 💼 Interview preparation
 - 🏢 Company insights
 - 📈 Career roadmaps
-- ✅ Real-Time Resume & Feedback Analysis
-- ✅ Mock Interviews & Coding Rounds
-- ✅ Gamification with Badges & Rewards
+- ✅ Real-Time Resume & Feedback Analysiss
 - ✅ Department-wise Job Roadmaps
-- ✅ Multi-language Support
 
 ## Tech Stack
 
 - **Frontend**: Next.js 14, React 18, Tailwind CSS
 - **UI Components**: Shadcn UI, Radix UI
 - **AI Integration**: Google Gemini Flash 1.5 API
-- **Styling**: Tailwind CSS with dark/light theme support
+- **Styling**: Tailwind CSS
 - **Icons**: Lucide React, Heroicons
 - **Deployment**: Vercel
 
@@ -55,40 +52,6 @@ A full-stack AI-powered career planning and job preparation platform built with 
 - **Environment Variable**: `NEXT_PUBLIC_YOUTUBE_API_KEY=your_youtube_api_key`
 - **Cost**: Free tier available
 
-#### 3. **RapidAPI Keys** (Optional - for additional data sources)
-- **Purpose**: Job market data, company information, salary insights
-- **Get it from**: [RapidAPI Hub](https://rapidapi.com/hub)
-- **Popular APIs to consider**:
-  - Jobs API
-  - Company Data API
-  - Salary API
-- **Environment Variable**: `NEXT_PUBLIC_RAPID_API_KEY=your_rapidapi_key`
-- **Cost**: Varies by API, many have free tiers
-
-#### 4. **Firebase Configuration** (Optional - for advanced features)
-- **Purpose**: User authentication, real-time database, file storage
-- **Get it from**: [Firebase Console](https://console.firebase.google.com/)
-- **Steps**:
-  1. Create a new Firebase project
-  2. Go to Project Settings > General
-  3. Add a web app to get configuration
-- **Environment Variables**:
-  ```bash
-  NEXT_PUBLIC_FIREBASE_API_KEY=your_firebase_api_key
-  NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your_project.firebaseapp.com
-  NEXT_PUBLIC_FIREBASE_PROJECT_ID=your_project_id
-  NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=your_project.appspot.com
-  NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=123456789
-  NEXT_PUBLIC_FIREBASE_APP_ID=1:123456789:web:abcdef
-  ```
-- **Cost**: Generous free tier, pay-as-you-go
-
-#### 5. **Database Configuration** (Optional - for persistence)
-- **Purpose**: Store user data, progress, custom content
-- **Recommended**: [Neon PostgreSQL](https://neon.tech/) or [PlanetScale](https://planetscale.com/)
-- **Environment Variable**: `DATABASE_URL=postgresql://username:password@hostname/database`
-- **Cost**: Free tier available
-
 ### Environment Setup Guide
 
 #### For Local Development (.env.local)
@@ -101,23 +64,6 @@ GOOGLE_GEMINI_API_KEY=AIzaSyYourActualGeminiKeyHere
 # Optional: YouTube Data API (Educational content)
 NEXT_PUBLIC_YOUTUBE_API_KEY=your_youtube_api_key
 
-# Optional: RapidAPI (Job market data)
-NEXT_PUBLIC_RAPID_API_KEY=your_rapidapi_key
-
-# Optional: Firebase (Authentication & Database)
-NEXT_PUBLIC_FIREBASE_API_KEY=your_firebase_api_key
-NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your_project.firebaseapp.com
-NEXT_PUBLIC_FIREBASE_PROJECT_ID=your_project_id
-NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=your_project.appspot.com
-NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=123456789
-NEXT_PUBLIC_FIREBASE_APP_ID=1:123456789:web:abcdef
-
-# Optional: Database (Data persistence)
-DATABASE_URL=postgresql://username:password@hostname/database
-
-# Optional: Custom API endpoints
-NEXT_PUBLIC_API_BASE_URL=http://localhost:3000/api
-```
 
 #### For Production Deployment (Vercel/Netlify)
 Add these same variables in your hosting platform's environment variables section.
@@ -141,20 +87,10 @@ Add these same variables in your hosting platform's environment variables sectio
 
 #### Test Other APIs:
 - **YouTube API**: Visit any learning module with video content
-- **Firebase**: Try user authentication features
-- **Database**: Check if user progress is being saved
-
 ### 💡 Fallback Behavior
 The app is designed to work even without all API keys:
 - **Without Gemini API**: Shows pre-written content instead of AI-generated
 - **Without YouTube API**: Uses placeholder video content
-- **Without Firebase**: Uses local storage for basic functionality
-- **Without Database**: Uses in-memory storage (resets on refresh)
-
-### 📞 Need Help?
-- Check the [API Documentation](#api-documentation) section below
-- Review the troubleshooting guide
-- Open an issue on GitHub for specific problems
 
 ## Getting Started
 
@@ -295,7 +231,6 @@ docker run -p 3000:3000 \
 - `NEXT_PUBLIC_YOUTUBE_API_KEY` - For video content
 - `CLERK_SECRET_KEY` - For authentication
 - `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY` - For authentication
-- `DATABASE_URL` - For data persistence
 
 ### Production Checklist
 
@@ -329,7 +264,7 @@ Before deploying to production:
 🧭 Department & Interest Mapping
       │
       ▼
-🧠 Ikigai-Based Role Alignment
+🧠 Role Alignment
       │
       ▼
 🧬 Role Recommendation
@@ -366,52 +301,35 @@ Before deploying to production:
 
 ---
 
-## 🧩 Execution Plan
-
-![Execution Plan](./public/projectshot/Copy%20of%20Team_GCOEY.png)
-
-### 🔹 Phase 1: Career Planning
-
-- Dept-wise Roles
-- Check My Role
-- Roadmaps
-- Course Roadmap
-
-### 🔹 Phase 2: Learning & Development
-
-- Explore Courses
-- Create Courses
-- Projects
-- Recall
-- 30-Day Targeted Prep
-- Tools Companies Use
-- Check My Resume
-
-### 🔹 Phase 3: Interview Preparation
-
-- Soft Skills Interview
-- Aptitude Exam
-- Mock Interviews
-- Coding Practice
-
-### 🔹 Phase 4: Ecosystem Integration
-
-- Company Dashboard
-- Assessments
-- Post Jobs & Hire
-- Company Problem Challenges
-
----
-
 ## 🧠 System Architecture & Workflow
 
-![System Architecture](./public/projectshot/4.png)
+![System Architecture](./public/projectsho# 🚀 Execution Plan
 
----
+## 📌 Phase 1: Career Planning
+- Department-wise Job Roles
+- Check My Role
+- Role Roadmap
 
-## 🔬 Innovations
+## 📌 Phase 2: Learning & Development
+- Certifications
+- Real Time Projects
+- Competitions
+- Aptitude Learning Platform
 
-![Innovation Highlights](./public/projectshot/2.png)
+## 📌 Phase 3: Interview Preparation
+- Mock Interviews
+- Soft Skills
+- Coding Round
+- Resume Preparation
+
+## 📌 Phase 4: Final Prototype
+- Hiring Platforms
+- Superset Drives
+- Internship Platforms
+- Hiring Challenges
+- MNC Career Portals
+- Startup Database
+- Remote Hiring DBt/4.png)
 
 ---
 
@@ -423,17 +341,6 @@ Before deploying to production:
 | Backend    | Next.js (API routes)  |
 | UI Library | Shadcn                |
 | AI Engine  | Gemini Flash 1.5 API  |
-
----
-
-## 🧠 Core Algorithms
-
-- AI Career Path Recommender
-- Resume Evaluation & Optimization
-- Skill Gap Analyzer
-- AI Mock Interview Engine
-- AI-Assisted Coding Platform
-- Language Barrier Remover
 
 ---
 
