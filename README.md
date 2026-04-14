@@ -301,9 +301,7 @@ Before deploying to production:
 
 ---
 
-## 🧠 System Architecture & Workflow
-
-![System Architecture](./public/projectsho# 🚀 Execution Plan
+## 🚀 Execution Plan
 
 ## 📌 Phase 1: Career Planning
 - Department-wise Job Roles
